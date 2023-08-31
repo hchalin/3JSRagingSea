@@ -25,16 +25,16 @@ const scene = new THREE.Scene()
 const waterGeometry = new THREE.PlaneGeometry(2, 2, 128, 128)
 
 // Material
-const waterMaterial = new THREE.ShaderMaterial({
-    vertexShader: waterVertexShader,
-    fragmentShader: waterFragmentShader,
-    uniforms: {
-        uBigWaveElevation: { value: 0.2 },
-        uBigWaveFrequency: {value: new THREE.Vector2(4, 1.5)},
-        uTime: {value: 1.0},
+// const waterMaterial = new THREE.ShaderMaterial({
+//     vertexShader: waterVertexShader,
+//     fragmentShader: waterFragmentShader,
+//     uniforms: {
+//         uBigWaveElevation: { value: 0.2 },
+//         uBigWaveFrequency: {value: new THREE.Vector2(4, 1.5)},
+//         uTime: {value: 1.0},
 
-    }
-})
+//     }
+// })
 
 gui.add(waterMaterial.uniforms.uBigWaveElevation, 'value').step(0.001).min(0).max(1.0).name('uBigWaveElevation')
 
