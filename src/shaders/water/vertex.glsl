@@ -6,7 +6,7 @@ uniform float uTime;
 void main(){
 
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-  float modulation = uTime / 5.00;
+  // float modulation = uTime / 5.00;
    float elevation = sin(modelPosition.x * uBigWaveFrequency.x) * uBigWaveElevation;
   modelPosition.y += elevation;
 
