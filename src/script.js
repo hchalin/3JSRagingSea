@@ -24,12 +24,16 @@ const scene = new THREE.Scene();
  */
 // Geometry
 const waterGeometry = new THREE.PlaneGeometry(2, 2, 128, 128);
+const cubeGeometry = new THREE.BoxGeometry(1,1,1)
 
 //Color
 debugObject.depthColor = "#186691";
 debugObject.surfaceColor = "#9bd8ff";
 
-// Material
+/**
+ * MATERIALS
+ */
+// Water materials
 const waterMaterial = new THREE.ShaderMaterial({
   vertexShader: waterVertexShader,
   fragmentShader: waterFragmentShader,
@@ -46,6 +50,11 @@ const waterMaterial = new THREE.ShaderMaterial({
     uColorMultiplier: { value: 5 },
   },
 });
+
+// Box materials
+const boxMaterials = new THREE.MeshBasicMaterial({
+    color: 'blue',
+})
 
 gui
   .add(waterMaterial.uniforms.uBigWaveElevation, "value")
