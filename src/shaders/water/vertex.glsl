@@ -1,13 +1,22 @@
-uniform float uBigWaveElevation;
-uniform vec2 uBigWaveFrequency;
 uniform float uTime;
+uniform float uBigWavesSpeed;
+uniform float uBigWaveElevation;
+uniform vec2 uBigWavesFrequency;
 
+varying float vElevation;
 
 void main(){
 
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-  // float modulation = uTime / 5.00;
-   float elevation = sin(modelPosition.x * uBigWaveFrequency.x) * uBigWaveElevation;
+
+
+  // Elevation
+   float elevation =  sin(modelPosition.x * uBigWavesFrequency.x + uTime *
+                    uBigWavesSpeed) *
+                      sin(modelPosition.z * uBigWavesFrequency.y + uTime *
+                    uBigWavesSpeed) *
+                    uBigWaveElevation;
+
   modelPosition.y += elevation;
 
   vec4 viewPosition = viewMatrix * modelPosition;
@@ -17,4 +26,7 @@ void main(){
 
 
   gl_Position = projectedPosition;
+
+  // Varyings
+  vElevation = elevation;
 }
