@@ -23,7 +23,7 @@ vec3 fade(vec3 t)
 }
 
 // Classic perlin noise
-// by: stephan 
+// by: stephan
 float cnoise(vec3 P)
 {
     vec3 Pi0 = floor(P); // Integer part for indexing
@@ -92,6 +92,8 @@ float cnoise(vec3 P)
     float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);
     return 2.2 * n_xyz;
 }
+
+
 void main(){
 
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
@@ -103,6 +105,8 @@ void main(){
                       sin(modelPosition.z * uBigWavesFrequency.y + uTime *
                     uBigWavesSpeed) *
                     uBigWaveElevation;
+
+  elevation += cnoise(vec3(modelPosition.xz * 10.0, uTime * 0.2));
 
   modelPosition.y += elevation;
 
