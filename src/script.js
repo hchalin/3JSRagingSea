@@ -78,19 +78,25 @@ gui
   .onChange(() => {
     waterMaterial.uniforms.uDepthColor.value.set(debugObject.depthColor);
   });
-gui
-  .add(waterMaterial.uniforms.uColorOfset, "value")
-  .step(0.001)
-  .min(0)
-  .max(1.0)
-  .name("uColorOfset");
 
-gui
+  gui
   .addColor(debugObject, "surfaceColor")
   .name("surfaceColor")
   .onChange(() => {
-    waterMaterial.uniforms.uSurfaceColor.value.set(debugObject.surfaceColor);
-  });
+      waterMaterial.uniforms.uSurfaceColor.value.set(debugObject.surfaceColor);
+    });
+    gui
+      .add(waterMaterial.uniforms.uColorOfset, "value")
+      .step(0.001)
+      .min(0)
+      .max(1.0)
+      .name("uColorOfset");
+    gui
+      .add(waterMaterial.uniforms.uColorMultiplier, "value")
+      .step(0.001)
+      .min(0)
+      .max(10.0)
+      .name("uColorMultiplier");
 
 // Mesh
 const water = new THREE.Mesh(waterGeometry, waterMaterial);
