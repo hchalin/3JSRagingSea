@@ -12,12 +12,18 @@ THREE.ColorManagement.enabled = false;
 // Debug
 const gui = new dat.GUI({ width: 340 });
 const debugObject = {};
+const settings = {
+    isBoxVisible: false,
+}
+
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
+
+
 
 /**
  * Water
@@ -138,6 +144,7 @@ gui
   .max(10.0)
   .name("uColorMultiplier");
 
+
 // Mesh
 const water = new THREE.Mesh(waterGeometry, waterMaterial);
 water.rotation.x = -Math.PI * 0.5;
@@ -146,7 +153,18 @@ scene.add(water);
 // Box
 const box = new THREE.Mesh(cubeGeometry, boxMaterial);
 
-scene.add(box);
+gui.add(settings, 'isBoxVisible').onChange((val)=>{
+    if (val) {
+        // Show the cube
+        scene.add(box);
+      } else {
+        // Hide the cube
+        scene.remove(box);
+      }
+
+})
+
+
 
 /**
  * Sizes
