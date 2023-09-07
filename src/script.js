@@ -23,7 +23,7 @@ const scene = new THREE.Scene();
  * Water
  */
 // Geometry
-const waterGeometry = new THREE.PlaneGeometry(2, 2, 512, 512);
+const waterGeometry = new THREE.PlaneGeometry(3, 3, 512, 512);
 // const waterGeometry = new THREE.SphereGeometry(1,30,30)
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -59,7 +59,7 @@ const waterMaterial = new THREE.ShaderMaterial({
 });
 
 // Box materials
-const boxMaterials = new THREE.MeshBasicMaterial({
+const boxMaterial = new THREE.MeshBasicMaterial({
   color: "blue",
 });
 
@@ -142,6 +142,11 @@ gui
 const water = new THREE.Mesh(waterGeometry, waterMaterial);
 water.rotation.x = -Math.PI * 0.5;
 scene.add(water);
+
+// Box
+const box = new THREE.Mesh(cubeGeometry, boxMaterial);
+
+scene.add(box);
 
 /**
  * Sizes
