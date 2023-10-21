@@ -23,6 +23,21 @@ const canvas = document.querySelector("canvas.webgl");
 // Scene
 const scene = new THREE.Scene();
 
+/**
+ * Fog
+ */
+// Geometry
+// const fogGeometry = new THREE.BoxGeometry(2,2,2)
+
+// Material
+// const fogMaterial = new THREE.ShaderMaterial({
+
+// })
+// Fog mesh
+// const fog = new THREE.Mesh(fogGeometry, fogMaterial)
+
+// scene.add(fog);
+
 
 
 /**
@@ -59,10 +74,12 @@ const waterMaterial = new THREE.ShaderMaterial({
     //colors
     uDepthColor: { value: new THREE.Color(debugObject.depthColor) },
     uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
-    uColorOfset: { value: 0.08 },
+    uColorOffset: { value: 0.08 },
     uColorMultiplier: { value: 5 },
   },
 });
+
+console.log(waterMaterial);
 
 // Box materials
 const boxMaterial = new THREE.MeshBasicMaterial({
@@ -132,7 +149,7 @@ gui
     waterMaterial.uniforms.uSurfaceColor.value.set(debugObject.surfaceColor);
   });
 gui
-  .add(waterMaterial.uniforms.uColorOfset, "value")
+  .add(waterMaterial.uniforms.uColorOffset, "value")
   .step(0.001)
   .min(0)
   .max(1.0)
@@ -145,10 +162,12 @@ gui
   .name("uColorMultiplier");
 
 
-// Mesh
+// Meshes
+
 const water = new THREE.Mesh(waterGeometry, waterMaterial);
 water.rotation.x = -Math.PI * 0.5;
 scene.add(water);
+
 
 // Box
 const box = new THREE.Mesh(cubeGeometry, boxMaterial);
