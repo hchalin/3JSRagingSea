@@ -14,6 +14,7 @@ const gui = new dat.GUI({ width: 340 });
 const debugObject = {};
 const settings = {
     isBoxVisible: false,
+    isFogVisible: false
 }
 
 
@@ -27,16 +28,16 @@ const scene = new THREE.Scene();
  * Fog
  */
 // Geometry
-// const fogGeometry = new THREE.BoxGeometry(2,2,2)
+const fogGeometry = new THREE.BoxGeometry(2,2,2)
 
 // Material
-// const fogMaterial = new THREE.ShaderMaterial({
-
-// })
+const fogMaterial = new THREE.ShaderMaterial({
+  //Nothing right now
+})
 // Fog mesh
-// const fog = new THREE.Mesh(fogGeometry, fogMaterial)
+const fog = new THREE.Mesh(fogGeometry, fogMaterial)
 
-// scene.add(fog);
+
 
 
 
@@ -179,6 +180,16 @@ gui.add(settings, 'isBoxVisible').onChange((val)=>{
       } else {
         // Hide the cube
         scene.remove(box);
+      }
+
+})
+gui.add(settings, 'isFogVisible').onChange((val)=>{
+    if (val) {
+        // Show the cube
+       scene.add(fog);
+      } else {
+        // Hide the cube
+        scene.remove(fog);
       }
 
 })
